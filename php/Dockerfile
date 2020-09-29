@@ -22,6 +22,8 @@ RUN set -xe; \
             libenchant-dev \
             # gmp
             libgmp-dev \
+            # ldap
+            libldap2-dev \
             # readline
             libedit-dev \
             # xsl
@@ -52,7 +54,7 @@ RUN set -xe; \
             # interbase \
             intl \
             json \
-            # ldap \
+            ldap \
             mbstring \
             mysqli \
             # oci8 \
