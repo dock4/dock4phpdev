@@ -34,7 +34,7 @@ RUN set -xe; \
             dom \
             enchant \
             # exif \
-            # fileinfo \
+            fileinfo \
             # filter \
             # ftp \
             # gd \
