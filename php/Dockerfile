@@ -47,10 +47,10 @@ RUN set -xe; \
             gettext \
             gmp \
             hash \
-            # iconv \
+            iconv \
             # imap \
             # interbase \
-            # intl \
+            intl \
             json \
             # ldap \
             mbstring \
