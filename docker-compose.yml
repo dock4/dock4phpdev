@@ -1,0 +1,54 @@
+version: "3"
+
+services:
+    workspace:
+        build:
+            context: ./workspace
+        volumes:
+            - ../:/var/www
+        environment:
+            - TZ=${TZ}
+        tty: true
+
+    php72-fpm:
+        build:
+            context: ./php
+            args:
+                - PHP_VERSION_ARG=7.2
+        volumes:
+            - ../:/var/www
+        environment: 
+            - TZ=${TZ}
+    php74-fpm:
+        build:
+            context: ./php
+            args:
+                - PHP_VERSION_ARG=7.4
+        volumes:
+            - ../:/var/www
+        environment: 
+            - TZ=${TZ}
+
+    nginx:
+        build:
+            context: ./nginx
+        volumes:
+            - ../:/var/www
+            - ./nginx/sites/:/etc/nginx/sites-available
+        environment: 
+            - TZ=${TZ}
+        ports:
+            - "${NGINX_HTTP_PORT}:80"
+            - "${NGINX_HTTPS_PORT}:443"
+        depends_on:
+            - php72-fpm
+
+    postgres:
+        build:
+            context: ./postgres
+            args:
+                - POSTGRES_VERSION=${POSTGRES_VERSION}
+        environment: 
+            - TZ=${TZ}
+        ports:
+            - ${POSTGRES_PORT}:5432
