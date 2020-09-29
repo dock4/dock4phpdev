@@ -14,13 +14,15 @@ RUN set -xe; \
     apt-get update; \
     pecl channel-update pecl.php.net; \
     apt-get install -yqq \
+            # bz2
+            libbz2-dev \
             # zip
             libzip-dev zip unzip;
 
 RUN set -xe; \
     docker-php-ext-install \
             bcmath \
-            # bz2 \
+            bz2 \
             # calendar \
             # ctype \
             # curl \
