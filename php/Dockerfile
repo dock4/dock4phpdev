@@ -18,6 +18,8 @@ RUN set -xe; \
             libbz2-dev \
             # dom
             libxml2-dev \
+            # enchant
+            libenchant-dev \
             # zip
             libzip-dev zip unzip;
 
@@ -30,7 +32,7 @@ RUN set -xe; \
             # curl \
             dba \
             dom \
-            # enchant \
+            enchant \
             # exif \
             # fileinfo \
             # filter \
