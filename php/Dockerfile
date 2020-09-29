@@ -19,7 +19,7 @@ RUN set -xe; \
 
 RUN set -xe; \
     docker-php-ext-install \
-            # bcmath \
+            bcmath \
             # bz2 \
             # calendar \
             # ctype \
