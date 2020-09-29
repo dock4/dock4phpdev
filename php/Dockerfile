@@ -87,10 +87,12 @@ RUN set -xe; \
             # tidy \
             # tokenizer \
             # wddx \
-            xml \
+            ### bundled
+            # xml \
             # xmlreader \
-            xmlrpc \
             # xmlwriter \
+            ###
+            xmlrpc \
             xsl \
             # zend_test \
             zip \
