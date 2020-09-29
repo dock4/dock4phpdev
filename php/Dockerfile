@@ -26,7 +26,7 @@ RUN set -xe; \
             calendar \
             ctype \
             # curl \
-            # dba \
+            dba \
             # dom \
             # enchant \
             # exif \
