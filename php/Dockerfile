@@ -45,7 +45,7 @@ RUN set -xe; \
             # imap \
             # interbase \
             # intl \
-            # json \
+            json \
             # ldap \
             mbstring \
             # mysqli \
