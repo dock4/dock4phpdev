@@ -85,7 +85,7 @@ RUN set -xe; \
             # wddx \
             xml \
             xmlreader \
-            # xmlrpc \
+            xmlrpc \
             xmlwriter \
             # xsl \
             # zend_test \
