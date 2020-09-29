@@ -24,6 +24,8 @@ RUN set -xe; \
             libgmp-dev \
             # ldap
             libldap2-dev \
+            # imap
+            libc-client-dev libkrb5-dev \
             # readline
             libedit-dev \
             # xsl
@@ -32,6 +34,8 @@ RUN set -xe; \
             libzip-dev zip unzip;
 
 RUN set -xe; \
+    docker-php-ext-configure \
+            imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-install \
             bcmath \
             bz2 \
@@ -50,7 +54,7 @@ RUN set -xe; \
             gmp \
             hash \
             iconv \
-            # imap \
+            imap \
             # interbase \
             intl \
             json \
