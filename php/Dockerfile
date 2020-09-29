@@ -83,10 +83,10 @@ RUN set -xe; \
             # tidy \
             # tokenizer \
             # wddx \
-            # xml \
-            # xmlreader \
+            xml \
+            xmlreader \
             # xmlrpc \
-            # xmlwriter \
+            xmlwriter \
             # xsl \
             # zend_test \
             # ; php -m;
