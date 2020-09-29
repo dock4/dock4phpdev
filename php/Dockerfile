@@ -16,6 +16,8 @@ RUN set -xe; \
     apt-get install -yqq \
             # bz2
             libbz2-dev \
+            # dom
+            libxml2-dev \
             # zip
             libzip-dev zip unzip;
 
@@ -27,7 +29,7 @@ RUN set -xe; \
             ctype \
             # curl \
             dba \
-            # dom \
+            dom \
             # enchant \
             # exif \
             # fileinfo \
