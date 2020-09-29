@@ -20,6 +20,10 @@ RUN set -xe; \
             libxml2-dev \
             # enchant
             libenchant-dev \
+            # readline
+            libedit-dev \
+            # xsl
+            libxslt1-dev \
             # zip
             libzip-dev zip unzip;
 
@@ -63,9 +67,9 @@ RUN set -xe; \
             # pdo_sqlite \
             # pgsql \
             # phar \
-            # posix \
+            posix \
             # pspell \
-            # readline \
+            readline \
             # recode \
             # reflection \
             # session \
@@ -84,13 +88,13 @@ RUN set -xe; \
             # tokenizer \
             # wddx \
             xml \
-            xmlreader \
+            # xmlreader \
             xmlrpc \
-            xmlwriter \
-            # xsl \
+            # xmlwriter \
+            xsl \
             # zend_test \
-            # ; php -m;
-            zip; php -m;
+            zip \
+            ; php -m;
 
 # php -m | grep -q 'zip'
 
