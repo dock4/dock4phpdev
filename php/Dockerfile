@@ -48,7 +48,7 @@ RUN set -xe; \
             json \
             # ldap \
             mbstring \
-            # mysqli \
+            mysqli \
             # oci8 \
             # odbc \
             # opcache \
