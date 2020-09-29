@@ -24,7 +24,7 @@ RUN set -xe; \
             bcmath \
             bz2 \
             calendar \
-            # ctype \
+            ctype \
             # curl \
             # dba \
             # dom \
