@@ -20,6 +20,8 @@ RUN set -xe; \
             libxml2-dev \
             # enchant
             libenchant-dev \
+            # gmp
+            libgmp-dev \
             # readline
             libedit-dev \
             # xsl
@@ -37,14 +39,14 @@ RUN set -xe; \
             dba \
             dom \
             enchant \
-            # exif \
+            exif \
             fileinfo \
             # filter \
             # ftp \
             # gd \
-            # gettext \
-            # gmp \
-            # hash \
+            gettext \
+            gmp \
+            hash \
             # iconv \
             # imap \
             # interbase \
