@@ -73,7 +73,7 @@ RUN set -xe; \
     php -m | grep -q 'gmp'; \
     docker-php-ext-install \
         # hash \
-        # iconv \
+        iconv \
         # imap \
         # interbase \
         # intl \
@@ -129,9 +129,9 @@ RUN set -xe; \
 # RUN set -xe; \
 #     apt-get install -yqq libsnmp-dev; \
 #     docker-php-ext-install \
-#         snmp \
+#         iconv \
 #     ; \
-#     php -m | grep -q 'snmp' \
+#     php -m | grep -q 'iconv' \
 #     ;
 
 WORKDIR /var/www
