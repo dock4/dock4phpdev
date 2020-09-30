@@ -44,7 +44,7 @@ RUN set -xe; \
         bz2 \
         calendar \
         ctype \
-        ### curl \
+        # curl \ ### bundled
         dba \
         dom \
         enchant \
@@ -104,7 +104,7 @@ RUN set -xe; \
         # shmop \
         # simplexml \
         # snmp \
-        # soap \
+        soap \
         # sockets \
         # sodium \
         # spl \
@@ -119,7 +119,7 @@ RUN set -xe; \
         # xml \
         # xmlreader \
         # xmlwriter \
-        ###
+        ### bundled
         xmlrpc \
         xsl \
         # zend_test \
@@ -127,36 +127,11 @@ RUN set -xe; \
     ; php -m;
 
 # RUN set -xe; \
+#     apt-get install -yqq libsnmp-dev; \
 #     docker-php-ext-install \
-#         if [ $(php -r "echo PHP_MAJOR_VERSION;") = "7" ]; then \
-#             gmp; \
-#         if; \
+#         snmp \
+#     ; \
+#     php -m | grep -q 'snmp' \
 #     ;
-
-# RUN set -xe; \
-    # gd
-    # apt-get install -yqq \
-    #     libfreetype6-dev \
-    #     libjpeg-dev \
-    #     libpng-dev \
-    # ; \
-    # before PHP 7.4
-    # docker-php-ext-configure gd \
-    #         --with-freetype-dir=/usr \
-    #         --with-jpeg-dir=/usr \
-    #         --with-png-dir=/usr \
-    #         ; \
-    # docker-php-ext-install \
-    #     gd \
-    # ; php -m;
-
-# RUN set -xe; \
-#     docker-php-ext-install \
-            # pdo_pgsql \
-            # pdo_sqlite \
-            # pgsql \
-            # ;
-
-# php -m | grep -q 'zip'
 
 WORKDIR /var/www
