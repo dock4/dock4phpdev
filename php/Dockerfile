@@ -13,7 +13,7 @@ ARG PHP_VERSION_ARG
 RUN set -xe; \
     apt-get update; \
     pecl channel-update pecl.php.net; \
-    apt-get install -yqq \
+    apt-get install -qq \
         # bz2
         libbz2-dev \
         # dom
@@ -35,6 +35,10 @@ RUN set -xe; \
         # zip
         libzip-dev zip unzip \
     ;
+RUN set -xe; \
+        # pdo_dblib
+        apt-get install -qq freetds-dev libsybdb5; \
+        ln -s /usr/lib/x86_64-linux-gnu/libsybdb.so /usr/lib/libsybdb.so;
 RUN set -xe; \
     docker-php-ext-configure \
         imap --with-kerberos --with-imap-ssl \
@@ -86,7 +90,7 @@ RUN set -xe; \
         # opcache \
         # pcntl \
         pdo \
-        # pdo_dblib \
+        pdo_dblib \
         # pdo_firebird \
         pdo_mysql \
         # pdo_oci \
