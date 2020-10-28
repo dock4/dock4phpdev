@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN set -xe; \
     apt-get update; \
-    apt-get install -y software-properties-common curl git vim nano; \
+    apt-get install -y software-properties-common curl git vim nano unzip; \
     # Add the "PHP 7" ppa
     add-apt-repository -y ppa:ondrej/php; \
     apt-get update
@@ -68,3 +68,16 @@ RUN set -xe; \
             php7.4-xmlrpc \
             php7.4-xsl \
             php7.4-zip;
+
+RUN curl -s https://getcomposer.org/installer | php; \
+    mv composer.phar /usr/local/bin/composer
+
+RUN composer global require "laravel/envoy=~1.0"
+
+RUN curl -LO https://deployer.org/deployer.phar; \
+    mv deployer.phar /usr/local/bin/dep; \
+    chmod +x /usr/local/bin/dep
+
+RUN set -xe; \
+    apt-get install -y \
+        php7.4-pgsql \
