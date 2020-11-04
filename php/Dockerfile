@@ -14,6 +14,7 @@ RUN set -xe; \
     apt-get update; \
     pecl channel-update pecl.php.net; \
     apt-get install -qq \
+        git \
         # bz2
         libbz2-dev \
         # dom
