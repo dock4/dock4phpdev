@@ -9,6 +9,9 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN set -xe; \
     apt-get update; \
     apt-get install -y software-properties-common curl git vim nano unzip; \
+    # dblib
+    apt-get install -y freetds-dev freetds-bin libsybdb5; \
+    ln -s /usr/lib/x86_64-linux-gnu/libsybdb.so /usr/lib/; \
     # Add the "PHP 7" ppa
     add-apt-repository -y ppa:ondrej/php; \
     apt-get update
@@ -39,7 +42,19 @@ RUN set -xe; \
             php7.2-xml \
             php7.2-xmlrpc \
             php7.2-xsl \
-            php7.2-zip;
+            php7.2-zip; \
+    curl -L -o /tmp/php-7.2.tar.gz https://github.com/php/php-src/archive/PHP-7.2.tar.gz; \
+    mkdir /tmp/php-7.2-src; \
+    tar --strip 1 -zxvf /tmp/php-7.2.tar.gz -C /tmp/php-7.2-src; \
+    cd /tmp/php-7.2-src/ext/pdo_dblib/; \
+    phpize7.2; \
+    ./configure; \
+    make; \
+    make install; \
+    echo "extension=pdo_dblib.so" > /etc/php/7.2/mods-available/pdo_dblib.ini; \
+    ln -s /etc/php/7.2/mods-available/pdo_dblib.ini /etc/php/7.2/cli/conf.d/20-pdo_dblib.ini; \
+    ln -s /etc/php/7.2/mods-available/pdo_dblib.ini /etc/php/7.2/fpm/conf.d/20-pdo_dblib.ini; \
+    rm -rf /tmp/php-7.2.tar.gz /tmp/php-7.2-src
 
 RUN set -xe; \
     apt-get install -y \
@@ -67,7 +82,19 @@ RUN set -xe; \
             php7.4-xml \
             php7.4-xmlrpc \
             php7.4-xsl \
-            php7.4-zip;
+            php7.4-zip; \
+    curl -L -o /tmp/php-7.4.tar.gz https://github.com/php/php-src/archive/PHP-7.4.tar.gz; \
+    mkdir /tmp/php-7.4-src; \
+    tar --strip 1 -zxvf /tmp/php-7.4.tar.gz -C /tmp/php-7.4-src; \
+    cd /tmp/php-7.4-src/ext/pdo_dblib/; \
+    phpize7.4; \
+    ./configure; \
+    make; \
+    make install; \
+    echo "extension=pdo_dblib.so" > /etc/php/7.4/mods-available/pdo_dblib.ini; \
+    ln -s /etc/php/7.4/mods-available/pdo_dblib.ini /etc/php/7.4/cli/conf.d/20-pdo_dblib.ini; \
+    ln -s /etc/php/7.4/mods-available/pdo_dblib.ini /etc/php/7.4/fpm/conf.d/20-pdo_dblib.ini; \
+    rm -rf /tmp/php-7.4.tar.gz /tmp/php-7.4-src
 
 RUN curl -s https://getcomposer.org/installer | php; \
     mv composer.phar /usr/local/bin/composer
@@ -77,3 +104,5 @@ RUN composer global require "laravel/envoy=~1.0"
 RUN curl -LO https://deployer.org/deployer.phar; \
     mv deployer.phar /usr/local/bin/dep; \
     chmod +x /usr/local/bin/dep
+
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh | bash
