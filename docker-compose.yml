@@ -5,7 +5,7 @@ services:
         build:
             context: ./workspace
         volumes:
-            - ../:/var/www
+            - ${WORK_ROOT}:/var/www
         environment:
             - TZ=${TZ}
         tty: true
@@ -16,7 +16,7 @@ services:
             args:
                 - PHP_VERSION_ARG=5.6
         volumes:
-            - ../:/var/www
+            - ${WORK_ROOT}:/var/www
         environment: 
             - TZ=${TZ}
     php72-fpm:
@@ -25,7 +25,7 @@ services:
             args:
                 - PHP_VERSION_ARG=7.2
         volumes:
-            - ../:/var/www
+            - ${WORK_ROOT}:/var/www
         environment: 
             - TZ=${TZ}
     php73-fpm:
@@ -34,7 +34,7 @@ services:
             args:
                 - PHP_VERSION_ARG=7.3
         volumes:
-            - ../:/var/www
+            - ${WORK_ROOT}:/var/www
         environment: 
             - TZ=${TZ}
     php74-fpm:
@@ -43,7 +43,7 @@ services:
             args:
                 - PHP_VERSION_ARG=7.4
         volumes:
-            - ../:/var/www
+            - ${WORK_ROOT}:/var/www
         environment: 
             - TZ=${TZ}
 
@@ -51,7 +51,7 @@ services:
         build:
             context: ./nginx
         volumes:
-            - ../:/var/www
+            - ${WORK_ROOT}:/var/www
             - ./nginx/sites/:/etc/nginx/sites-available
         environment: 
             - TZ=${TZ}
