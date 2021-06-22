@@ -106,3 +106,5 @@ RUN curl -LO https://deployer.org/deployer.phar; \
     chmod +x /usr/local/bin/dep
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh | bash
+
+WORKDIR /var/www/
