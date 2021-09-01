@@ -10,33 +10,33 @@ services:
             - TZ=${TZ}
         tty: true
 
-    php56-fpm:
-        build:
-            context: ./php
-            args:
-                - PHP_VERSION_ARG=5.6
-        volumes:
-            - ${WORK_ROOT}:/var/www
-        environment:
-            - TZ=${TZ}
-    php72-fpm:
-        build:
-            context: ./php
-            args:
-                - PHP_VERSION_ARG=7.2
-        volumes:
-            - ${WORK_ROOT}:/var/www
-        environment:
-            - TZ=${TZ}
-    php73-fpm:
-        build:
-            context: ./php
-            args:
-                - PHP_VERSION_ARG=7.3
-        volumes:
-            - ${WORK_ROOT}:/var/www
-        environment:
-            - TZ=${TZ}
+    # php56-fpm:
+    #     build:
+    #         context: ./php
+    #         args:
+    #             - PHP_VERSION_ARG=5.6
+    #     volumes:
+    #         - ${WORK_ROOT}:/var/www
+    #     environment:
+    #         - TZ=${TZ}
+    # php72-fpm:
+    #     build:
+    #         context: ./php
+    #         args:
+    #             - PHP_VERSION_ARG=7.2
+    #     volumes:
+    #         - ${WORK_ROOT}:/var/www
+    #     environment:
+    #         - TZ=${TZ}
+    # php73-fpm:
+    #     build:
+    #         context: ./php
+    #         args:
+    #             - PHP_VERSION_ARG=7.3
+    #     volumes:
+    #         - ${WORK_ROOT}:/var/www
+    #     environment:
+    #         - TZ=${TZ}
     php74-fpm:
         build:
             context: ./php
@@ -52,6 +52,7 @@ services:
             context: ./nginx
         volumes:
             - ${WORK_ROOT}:/var/www
+            - ./log/nginx:/var/log/nginx
             - ./nginx/sites/:/etc/nginx/sites-available
         environment:
             - TZ=${TZ}
