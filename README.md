@@ -16,6 +16,10 @@ cp .env-example .env
 docker-compose build
 ```
 
+調整 .env 設定
+
+建立 nginx sites *.conf
+
 啟動全部的 service 容器，並以確認容器狀態都是 Up。
 
 ``` shell
@@ -30,3 +34,9 @@ docker-compose ps
 ``` shell
 docker-compose down
 ```
+
+## Local DNS
+
+設定 hosts 檔配合 nginx sites 設定
+
+在 Windows 編輯 `C:\Windows\System32\drivers\etc\hosts` 要用管理者權限
