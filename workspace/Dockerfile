@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN set -xe; \
     apt-get update; \
-    apt-get install -y software-properties-common curl git vim nano unzip; \
+    apt-get install -y software-properties-common curl git vim nano unzip iputils-ping; \
     # dblib
     apt-get install -y freetds-dev freetds-bin libsybdb5; \
     ln -s /usr/lib/x86_64-linux-gnu/libsybdb.so /usr/lib/; \
