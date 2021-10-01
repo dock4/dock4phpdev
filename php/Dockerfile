@@ -20,7 +20,7 @@ RUN set -xe; \
         # dom
         libxml2-dev \
         # enchant
-        libenchant-dev \
+        # libenchant-dev \
         # gmp
         libgmp-dev \
         # ldap
@@ -52,7 +52,7 @@ RUN set -xe; \
         # curl \ ### bundled
         dba \
         dom \
-        enchant \
+        # enchant \
         exif \
         fileinfo \
         # filter \
@@ -129,7 +129,10 @@ RUN set -xe; \
         xsl \
         # zend_test \
         zip \
-    ; php -m;
+    ; \
+    pecl install -o -f redis; \
+    docker-php-ext-enable redis; \
+    php -m;
 
 # RUN set -xe; \
 #     apt-get install -yqq libsnmp-dev; \
