@@ -84,7 +84,9 @@ services:
     redis:
         image: redis:latest
         volumes:
-            - ${WORK_ROOT}/redis:/data
+            - ${DATA_ROOT}/redis:/data
+        environment:
+            - TZ=${TZ}
         ports:
             - "${REDIS_PORT}:6379"
 
@@ -93,10 +95,11 @@ services:
     minio:
         image: minio/minio
         volumes:
-            - ${WORK_ROOT}/minio/data:/data
+            - ${DATA_ROOT}/minio/data:/data
         ports:
             - "${MINIO_PORT}:9000"
             - "${MINIO_CONSOLE_PORT}:9001"
         environment:
+            - TZ=${TZ}
             - MINIO_ROOT_USER=${MINIO_ROOT_USER}
             - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
