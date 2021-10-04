@@ -1,4 +1,4 @@
-version: "3"
+version: "3.7"
 
 services:
     workspace:
@@ -60,9 +60,9 @@ services:
             - "${NGINX_HTTP_PORT}:80"
             - "${NGINX_HTTPS_PORT}:443"
         depends_on:
-            - php56-fpm
-            - php72-fpm
-            - php73-fpm
+            # - php56-fpm
+            # - php72-fpm
+            # - php73-fpm
             - php74-fpm
 
     postgres:
@@ -79,3 +79,24 @@ services:
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
         ports:
             - ${POSTGRES_PORT}:5432
+
+    # https://hub.docker.com/_/redis
+    redis:
+        image: redis:latest
+        volumes:
+            - ${WORK_ROOT}/redis:/data
+        ports:
+            - "${REDIS_PORT}:6379"
+
+    # https://hub.docker.com/r/minio/minio/
+    # https://docs.min.io/docs/deploy-minio-on-docker-compose.html
+    minio:
+        image: minio/minio
+        volumes:
+            - ${WORK_ROOT}/minio/data:/data
+        ports:
+            - "${MINIO_PORT}:9000"
+            - "${MINIO_CONSOLE_PORT}:9001"
+        environment:
+            - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+            - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
