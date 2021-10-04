@@ -93,7 +93,8 @@ services:
     # https://hub.docker.com/r/minio/minio/
     # https://docs.min.io/docs/deploy-minio-on-docker-compose.html
     minio:
-        image: minio/minio
+        image: quay.io/minio/minio
+        command: server --console-address ":9001" /data
         volumes:
             - ${DATA_ROOT}/minio/data:/data
         ports:
