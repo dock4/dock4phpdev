@@ -90,13 +90,17 @@ services:
         ports:
             - "${REDIS_PORT}:6379"
 
-    # https://hub.docker.com/r/minio/minio/
+    # https://docs.min.io/docs/minio-docker-quickstart-guide
     # https://docs.min.io/docs/deploy-minio-on-docker-compose.html
     minio:
         image: quay.io/minio/minio
-        command: server --console-address ":9001" /data
+        command: server --console-address ":9001" /data{1...4}
         volumes:
-            - ${DATA_ROOT}/minio/data:/data
+            - ${DATA_ROOT}/minio/data1:/data1
+            - ${DATA_ROOT}/minio/data2:/data2
+            - ${DATA_ROOT}/minio/data3:/data3
+            - ${DATA_ROOT}/minio/data4:/data4
+            # - ${DATA_ROOT}/minio/data5:/data5
         ports:
             - "${MINIO_PORT}:9000"
             - "${MINIO_CONSOLE_PORT}:9001"

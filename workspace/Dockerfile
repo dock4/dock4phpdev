@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN set -xe; \
     apt-get update; \
-    apt-get install -y software-properties-common curl git vim nano unzip iputils-ping; \
+    apt-get install -y software-properties-common wget curl git vim nano unzip iputils-ping; \
     # dblib
     apt-get install -y freetds-dev freetds-bin libsybdb5; \
     ln -s /usr/lib/x86_64-linux-gnu/libsybdb.so /usr/lib/; \
@@ -106,5 +106,11 @@ RUN curl -LO https://deployer.org/deployer.phar; \
     chmod +x /usr/local/bin/dep
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh | bash
+
+RUN set -xe; \
+    # minio client
+    # https://min.io/download#/linux
+    wget https://dl.min.io/client/mc/release/linux-amd64/mcli_20210923054403.0.0_amd64.deb; \
+    dpkg -i mcli_20210923054403.0.0_amd64.deb
 
 WORKDIR /var/www/
