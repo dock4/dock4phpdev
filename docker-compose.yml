@@ -9,6 +9,7 @@ services:
         environment:
             - TZ=${TZ}
         tty: true
+        user: worker
 
     # php56-fpm:
     #     build:

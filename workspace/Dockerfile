@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN set -xe; \
     apt-get update; \
-    apt-get install -y software-properties-common wget curl git vim nano unzip iputils-ping; \
+    apt-get install -y software-properties-common sudo wget curl git vim nano unzip iputils-ping; \
     # dblib
     apt-get install -y freetds-dev freetds-bin libsybdb5; \
     ln -s /usr/lib/x86_64-linux-gnu/libsybdb.so /usr/lib/; \
@@ -112,5 +112,11 @@ RUN set -xe; \
     # https://min.io/download#/linux
     wget https://dl.min.io/client/mc/release/linux-amd64/mcli_20210923054403.0.0_amd64.deb; \
     dpkg -i mcli_20210923054403.0.0_amd64.deb
+
+RUN set -xe; \
+    groupadd -g 1000 worker; \
+    useradd -l --uid 1000 -g worker -G sudo --create-home worker; \
+    usermod -p "*" worker -s /bin/bash; \
+    echo 'worker ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/99-worker
 
 WORKDIR /var/www/
