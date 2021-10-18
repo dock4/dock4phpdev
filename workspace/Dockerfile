@@ -110,8 +110,9 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh | b
 RUN set -xe; \
     # minio client
     # https://min.io/download#/linux
-    wget https://dl.min.io/client/mc/release/linux-amd64/mcli_20210923054403.0.0_amd64.deb; \
-    dpkg -i mcli_20210923054403.0.0_amd64.deb
+    curl -L -o mcli_amd64.deb https://dl.min.io/client/mc/release/linux-amd64/mcli_20211007041958.0.0_amd64.deb; \
+    dpkg -i mcli_amd64.deb; \
+    rm -rf mcli_amd64.deb
 
 RUN set -xe; \
     groupadd -g 1000 worker; \
