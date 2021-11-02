@@ -105,8 +105,6 @@ RUN curl -LO https://deployer.org/deployer.phar; \
     mv deployer.phar /usr/local/bin/dep; \
     chmod +x /usr/local/bin/dep
 
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh | bash
-
 RUN set -xe; \
     # minio client
     # https://min.io/download#/linux
@@ -119,5 +117,17 @@ RUN set -xe; \
     useradd -l --uid 1000 -g worker -G sudo --create-home worker; \
     usermod -p "*" worker -s /bin/bash; \
     echo 'worker ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/99-worker
+
+USER worker
+
+# https://stackoverflow.com/questions/25899912/how-to-install-nvm-in-docker
+# https://stackoverflow.com/questions/25899912/how-to-install-nvm-in-docker/60137919#60137919
+SHELL ["/bin/bash", "--login", "-i", "-c"]
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh | bash; \
+    source ~/.bashrc; \
+    nvm install --lts; \
+    npm install -g npm
+
+SHELL ["/bin/bash", "--login", "-c"]
 
 WORKDIR /var/www/
