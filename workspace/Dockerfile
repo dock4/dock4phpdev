@@ -36,6 +36,7 @@ RUN set -xe; \
             php7.2-opcache \
             php7.2-pgsql \
             php7.2-readline \
+            php7.2-redis \
             php7.2-snmp \
             php7.2-soap \
             php7.2-sqlite3 \
@@ -76,6 +77,7 @@ RUN set -xe; \
             php7.4-opcache \
             php7.4-pgsql \
             php7.4-readline \
+            php7.4-redis \
             php7.4-snmp \
             php7.4-soap \
             php7.4-sqlite3 \
