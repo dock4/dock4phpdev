@@ -10,6 +10,8 @@ services:
             - TZ=${TZ}
         tty: true
         user: worker
+        ports:
+            - "1215:1215"
 
     # php56-fpm:
     #     build:

@@ -113,6 +113,21 @@ RUN set -xe; \
     rm -rf mcli_amd64.deb
 
 RUN set -xe; \
+    #################################
+    # enable sockets supports? [no] :
+    # enable openssl support? [no] :
+    # enable http2 support? [no] :
+    # enable mysqlnd support? [no] :
+    # enable json support? [no] :
+    # enable curl support? [no] :
+    #
+    # pecl -q install swoole; \
+    echo "no\nyes\nyes\nno\nno\nno\n" | pecl install swoole; \
+    echo "extension=swoole.so" >> /etc/php/7.4/mods-available/swoole.ini; \
+    ln -s /etc/php/7.4/mods-available/swoole.ini /etc/php/7.4/cli/conf.d/20-swoole.ini; \
+    ;
+
+RUN set -xe; \
     groupadd -g 1000 worker; \
     useradd -l --uid 1000 -g worker -G sudo --create-home worker; \
     usermod -p "*" worker -s /bin/bash; \
