@@ -110,7 +110,7 @@ RUN curl -LO https://deployer.org/deployer.phar; \
 RUN set -xe; \
     # minio client
     # https://min.io/download#/linux
-    curl -L -o mcli_amd64.deb https://dl.min.io/client/mc/release/linux-amd64/mcli_20211007041958.0.0_amd64.deb; \
+    curl -L -o mcli_amd64.deb https://dl.min.io/client/mc/release/linux-amd64/mcli_20211105100506.0.0_amd64.deb; \
     dpkg -i mcli_amd64.deb; \
     rm -rf mcli_amd64.deb
 
@@ -126,8 +126,7 @@ RUN set -xe; \
     # pecl -q install swoole; \
     echo "no\nyes\nyes\nno\nno\nno\n" | pecl install swoole; \
     echo "extension=swoole.so" >> /etc/php/7.4/mods-available/swoole.ini; \
-    ln -s /etc/php/7.4/mods-available/swoole.ini /etc/php/7.4/cli/conf.d/20-swoole.ini; \
-    ;
+    ln -s /etc/php/7.4/mods-available/swoole.ini /etc/php/7.4/cli/conf.d/20-swoole.ini
 
 RUN set -xe; \
     groupadd -g 1000 worker; \
