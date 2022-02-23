@@ -110,7 +110,7 @@ RUN curl -LO https://deployer.org/deployer.phar; \
 RUN set -xe; \
     # minio client
     # https://min.io/download#/linux
-    curl -L -o mcli_amd64.deb https://dl.min.io/client/mc/release/linux-amd64/mcli_20211105100506.0.0_amd64.deb; \
+    curl -L -o mcli_amd64.deb https://dl.min.io/client/mc/release/linux-amd64/mcli_20220223031559.0.0_amd64.deb; \
     dpkg -i mcli_amd64.deb; \
     rm -rf mcli_amd64.deb
 
