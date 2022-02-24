@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN set -xe; \
     apt-get update; \
-    apt-get install -y software-properties-common sudo wget curl git vim nano unzip iputils-ping; \
+    apt-get install -y software-properties-common sudo wget curl httpie git vim nano unzip iputils-ping jq; \
     # dblib
     apt-get install -y freetds-dev freetds-bin libsybdb5; \
     ln -s /usr/lib/x86_64-linux-gnu/libsybdb.so /usr/lib/; \
@@ -108,11 +108,21 @@ RUN curl -LO https://deployer.org/deployer.phar; \
     chmod +x /usr/local/bin/dep
 
 RUN set -xe; \
+    cd /tmp; \
+    #################################
+    # pup - HTML Parser tool
+    curl -L -o pup_linux_amd64.zip https://github.com/ericchiang/pup/releases/download/v0.4.0/pup_v0.4.0_linux_amd64.zip; \
+    unzip pup_linux_amd64.zip; \
+    mv ./pup /usr/local/bin; \
+    rm pup_linux_amd64.zip; \
+    #################################
     # minio client
     # https://min.io/download#/linux
-    curl -L -o mcli_amd64.deb https://dl.min.io/client/mc/release/linux-amd64/mcli_20220223031559.0.0_amd64.deb; \
+    MCLI_URL="$(curl https://dl.min.io/client/mc/release/linux-amd64/ | pup 'a json{}' | jq -r '.[] | select(.href | test("_amd64.deb$")) | {href} | .href')"; \
+    curl -L -o mcli_amd64.deb "https://dl.min.io/client/mc/release/linux-amd64/$MCLI_URL"; \
     dpkg -i mcli_amd64.deb; \
-    rm -rf mcli_amd64.deb
+    rm -rf mcli_amd64.deb; \
+    mcli --version;
 
 RUN set -xe; \
     #################################
