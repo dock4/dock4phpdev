@@ -119,8 +119,8 @@ RUN set -xe; \
     #################################
     # minio client
     # https://min.io/download#/linux
-    MCLI_URL="$(curl https://dl.min.io/client/mc/release/linux-amd64/ | pup 'a json{}' | jq -r '.[] | select(.href | test("_amd64.deb$")) | {href} | .href')"; \
-    curl -L -o mcli_amd64.deb "https://dl.min.io/client/mc/release/linux-amd64/$MCLI_URL"; \
+    MCLI_FILENAME="$(curl https://dl.min.io/client/mc/release/linux-amd64/ | pup 'a json{}' | jq -r '.[] | select(.href | test("_amd64.deb$")) | {href} | .href')"; \
+    curl -L -o mcli_amd64.deb "https://dl.min.io/client/mc/release/linux-amd64/$MCLI_FILENAME"; \
     dpkg -i mcli_amd64.deb; \
     rm -rf mcli_amd64.deb; \
     mcli --version;
