@@ -111,7 +111,8 @@ RUN set -xe; \
     cd /tmp; \
     #################################
     # pup - HTML Parser tool
-    curl -L -o pup_linux_amd64.zip https://github.com/ericchiang/pup/releases/download/v0.4.0/pup_v0.4.0_linux_amd64.zip; \
+    PUP_URL="$(curl -H 'Accept: application/vnd.github.v3+json' https://api.github.com/repos/ericchiang/pup/releases/latest | jq -r '.assets[] | select(.browser_download_url | test("_linux_amd64.zip$") ) | {browser_download_url} | .browser_download_url')"; \
+    curl -L -o pup_linux_amd64.zip "$PUP_URL"; \
     unzip pup_linux_amd64.zip; \
     mv ./pup /usr/local/bin; \
     rm pup_linux_amd64.zip; \
