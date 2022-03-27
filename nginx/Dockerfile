@@ -12,6 +12,7 @@ RUN set -eux; \
     # rm /etc/nginx/conf.d/default.conf; \
     apk update; \
     apk upgrade; \
-    apk add --no-cache bash zsh
+    apk add --no-cache shadow bash zsh; \
+    groupmod -g 1000 www-data;
 
 COPY nginx.conf /etc/nginx/

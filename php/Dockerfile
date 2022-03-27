@@ -10,7 +10,9 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ARG PHP_VERSION_ARG
 
-RUN set -xe; \
+RUN set -eux; \
+    groupmod -o -g 1000 www-data; \
+    usermod -o -u 1000 -g www-data www-data; \
     apt-get update; \
     pecl channel-update pecl.php.net; \
     apt-get install -yqq \

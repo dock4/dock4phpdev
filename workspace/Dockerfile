@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # ARG TZ
 # ENV TZ=${TZ}
 
-RUN set -xe; \
+RUN set -eux; \
     apt-get update; \
     apt-get install -y software-properties-common sudo wget curl httpie git vim nano unzip iputils-ping jq; \
     # dblib
@@ -16,7 +16,7 @@ RUN set -xe; \
     add-apt-repository -y ppa:ondrej/php; \
     apt-get update
 
-RUN set -xe; \
+RUN set -eux; \
     apt-get install -y \
             php7.2-bcmath \
             php7.2-bz2 \
@@ -57,7 +57,7 @@ RUN set -xe; \
     ln -s /etc/php/7.2/mods-available/pdo_dblib.ini /etc/php/7.2/fpm/conf.d/20-pdo_dblib.ini; \
     rm -rf /tmp/php-7.2.tar.gz /tmp/php-7.2-src
 
-RUN set -xe; \
+RUN set -eux; \
     apt-get install -y \
             php7.4-bcmath \
             php7.4-bz2 \
@@ -107,7 +107,7 @@ RUN curl -LO https://deployer.org/deployer.phar; \
     mv deployer.phar /usr/local/bin/dep; \
     chmod +x /usr/local/bin/dep
 
-RUN set -xe; \
+RUN set -eux; \
     cd /tmp; \
     #################################
     # pup - HTML Parser tool
@@ -125,7 +125,7 @@ RUN set -xe; \
     rm -rf mcli_amd64.deb; \
     mcli --version;
 
-RUN set -xe; \
+RUN set -eux; \
     #################################
     # enable sockets supports? [no] :
     # enable openssl support? [no] :
@@ -140,8 +140,8 @@ RUN set -xe; \
     ln -s /etc/php/7.4/mods-available/swoole.ini /etc/php/7.4/cli/conf.d/20-swoole.ini
 
 RUN set -xe; \
-    groupadd -g 1000 worker; \
-    useradd -l --uid 1000 -g worker -G sudo --create-home worker; \
+    groupmod -o -g 1000 www-data; \
+    useradd -l --uid 1000 -g www-data -G sudo --create-home worker; \
     usermod -p "*" worker -s /bin/bash; \
     echo 'worker ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/99-worker
 
