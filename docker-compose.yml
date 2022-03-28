@@ -68,6 +68,20 @@ services:
             # - php73-fpm
             - php74-fpm
 
+    mysql:
+        build:
+            context: ./mysql
+        volumes:
+            - ${DATA_ROOT}mysql:/var/lib/mysql
+            - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+        environment:
+            - TZ=${TZ}
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+        ports:
+            - "${MYSQL_PORT}:3306"
     postgres:
         build:
             context: ./postgres
@@ -87,7 +101,7 @@ services:
     redis:
         image: redis:latest
         volumes:
-            - ${DATA_ROOT}/redis:/data
+            - ${DATA_ROOT}redis:/data
         environment:
             - TZ=${TZ}
         ports:
@@ -99,11 +113,11 @@ services:
         image: quay.io/minio/minio
         command: server --console-address ":9001" /data{1...4}
         volumes:
-            - ${DATA_ROOT}/minio/data1:/data1
-            - ${DATA_ROOT}/minio/data2:/data2
-            - ${DATA_ROOT}/minio/data3:/data3
-            - ${DATA_ROOT}/minio/data4:/data4
-            # - ${DATA_ROOT}/minio/data5:/data5
+            - ${DATA_ROOT}minio/data1:/data1
+            - ${DATA_ROOT}minio/data2:/data2
+            - ${DATA_ROOT}minio/data3:/data3
+            - ${DATA_ROOT}minio/data4:/data4
+            # - ${DATA_ROOT}minio/data5:/data5
         ports:
             - "${MINIO_PORT}:9000"
             - "${MINIO_CONSOLE_PORT}:9001"
