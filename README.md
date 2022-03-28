@@ -7,7 +7,7 @@
 ``` shell
 git clone --depth 1 https://github.com/dock4/dock4phpdev.git
 cd ./dock4phpdev
-cp .env-example .env
+cp .env.example .env
 ```
 
 建立每個 service 的 image
