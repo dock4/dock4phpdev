@@ -16,7 +16,7 @@ cp .env.example .env
 docker-compose build
 ```
 
-調整 .env 設定
+調整 .env 設定 (密碼的預設值建議都改掉)
 
 建立 nginx sites *.conf (對 server_name, root, error_log, access_log 參數做適當設定)
 
