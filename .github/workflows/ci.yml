@@ -19,5 +19,5 @@ jobs:
     - name: Build
       run: |
         set -eux
-        cp .env-example .env
+        cp .env.example .env
         docker-compose build
