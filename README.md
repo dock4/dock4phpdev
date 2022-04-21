@@ -45,3 +45,8 @@ docker-compose down
 ## Todo
 
 - 處理 host ssh key 掛入 workspace 讓 git 套用
+
+## 服務
+### MeileSearch
+
+進入 workspace 容器可用 `curl http://meilisearch:7700/health | jq` 指令測試

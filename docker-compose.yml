@@ -129,4 +129,14 @@ services:
         image: adminer
         restart: always
         ports:
-        - "${ADMINER_PORT}:8080"
+            - "${ADMINER_PORT}:8080"
+
+    # https://docs.meilisearch.com/learn/getting_started/quick_start.html
+    meilisearch:
+        image: getmeili/meilisearch:latest
+        volumes:
+            - ${DATA_ROOT}meilisearch/data.ms:/data.ms
+        ports:
+            - "${MEILISEARCH_PORT}:7700"
+        environment:
+            - MEILI_MASTER_KEY=${MEILISEARCH_KEY}
