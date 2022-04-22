@@ -49,4 +49,10 @@ docker-compose down
 ## 服務
 ### MeileSearch
 
-進入 workspace 容器可用 `curl http://meilisearch:7700/health | jq` 指令測試
+進入 workspace 容器後可用 `curl http://meilisearch:7700/health | jq` 指令測試，回傳 `{ "status": "available" }` 就是正常。
+
+測試 KEY
+
+```shell
+curl http://meilisearch:7700/indexes -H 'Authorization: Bearer masterKey' | jq
+```
