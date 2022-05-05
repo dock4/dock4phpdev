@@ -143,3 +143,12 @@ services:
         environment:
             - TZ=${TZ}
             - MEILI_MASTER_KEY=${MEILISEARCH_KEY}
+
+    # https://github.com/mailhog/MailHog
+    mailhog:
+        image: mailhog/mailhog
+        ports:
+            - "${MAILHOG_SMTP_PORT}:1025"
+            - "${MAILHOG_WEBUI_PORT}:8025"
+        environment:
+            - TZ=${TZ}
