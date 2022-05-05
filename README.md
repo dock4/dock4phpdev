@@ -1,5 +1,19 @@
 # PHP 容器化開發環境
 
+#### Service default port list
+
+- 2080 Nginx HTTP
+- 2443 Nginx HTTPS
+- 3306 MySQL
+- 5432 PostgreSQL
+- 6379 Redis
+- 7700 MeiliSearch
+- 8080 Adminer
+- 9000 Minio
+- 9001 Minio Console
+- 1025 MailHog SMTP
+- 8025 MailHog Web UI
+
 #### Quick start
 
 處理設定檔，依照自己的環境調整 .env 內的設定, 起碼 port 不要衝突到
