@@ -135,7 +135,7 @@ RUN set -eux; \
     # enable curl support? [no] :
     #
     # pecl -q install swoole; \
-    echo "no\nyes\nyes\nno\nno\nno\n" | pecl install swoole; \
+    echo "no\nyes\nyes\nno\nno\nno\n" | pecl install swoole-4.8.11; \
     echo "extension=swoole.so" >> /etc/php/7.4/mods-available/swoole.ini; \
     ln -s /etc/php/7.4/mods-available/swoole.ini /etc/php/7.4/cli/conf.d/20-swoole.ini
 
