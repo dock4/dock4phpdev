@@ -8,7 +8,8 @@
 - 5432 PostgreSQL
 - 6379 Redis
 - 7700 MeiliSearch
-- 8080 Adminer
+- 13306 phpMyAdmin
+- 23306 Adminer
 - 9000 Minio
 - 9001 Minio Console
 - 1025 MailHog SMTP
