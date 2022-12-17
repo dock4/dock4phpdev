@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN set -eux; \
     apt-get update; \
-    apt-get install -y software-properties-common sudo wget curl httpie git vim nano unzip iputils-ping jq; \
+    apt-get install -y software-properties-common sudo wget curl httpie git vim nano unzip iputils-ping jq mysql-client; \
     # dblib
     apt-get install -y freetds-dev freetds-bin libsybdb5; \
     ln -s /usr/lib/x86_64-linux-gnu/libsybdb.so /usr/lib/; \
