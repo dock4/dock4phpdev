@@ -82,6 +82,20 @@ services:
             - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         ports:
             - "${MYSQL_PORT}:3306"
+    mysql80:
+        build:
+            context: ./mysql/8.0
+        volumes:
+            - ${DATA_ROOT}mysql80:/var/lib/mysql
+            - ${MYSQL_80_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+        environment:
+            - TZ=${TZ}
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+        ports:
+            - "${MYSQL_80_PORT}:3306"
     postgres:
         build:
             context: ./postgres

@@ -4,7 +4,8 @@
 
 - 2080 Nginx HTTP
 - 2443 Nginx HTTPS
-- 3306 MySQL
+- 3306 MySQL 5.7
+- 3307 MySQL 8.0
 - 5432 PostgreSQL
 - 6379 Redis
 - 7700 MeiliSearch
