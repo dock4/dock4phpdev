@@ -1,10 +1,11 @@
-#
+---
 services:
     workspace:
         build:
             context: ./workspace
         volumes:
             - ${WORK_ROOT}:/var/www
+            - ~/.ssh:/home/worker/.ssh:ro
         environment:
             - TZ=${TZ}
         tty: true
