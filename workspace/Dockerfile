@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
 # Set Environment Variables
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # ARG TZ
 # ENV TZ=${TZ}
