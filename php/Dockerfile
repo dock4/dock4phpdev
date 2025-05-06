@@ -3,7 +3,7 @@ ARG PHP_VERSION_ARG
 FROM php:${PHP_VERSION_ARG}-fpm
 
 # Set Environment Variables
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # ARG TZ
 # ENV TZ=${TZ}
