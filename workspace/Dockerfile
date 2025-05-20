@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:22.04
 
 # Set Environment Variables
 ENV DEBIAN_FRONTEND=noninteractive
@@ -125,7 +125,7 @@ RUN set -eux; \
     rm -rf mcli_amd64.deb; \
     mcli --version;
 
-# RUN set -eux; \
+RUN set -eux; \
     #################################
     # enable sockets supports? [no] :
     # enable openssl support? [no] :
@@ -136,14 +136,14 @@ RUN set -eux; \
     # enable cares support? [no] :
     #
     # pecl -q install swoole; \
-    # echo "no\nyes\nyes\nno\nno\nno\nno\n" | pecl install swoole-4.8.12; \
-    # echo "extension=swoole.so" >> /etc/php/7.4/mods-available/swoole.ini; \
-    # ln -s /etc/php/7.4/mods-available/swoole.ini /etc/php/7.4/cli/conf.d/20-swoole.ini
+    echo "no\nyes\nyes\nno\nno\nno\nno\n" | pecl install swoole-4.8.12; \
+    echo "extension=swoole.so" >> /etc/php/7.4/mods-available/swoole.ini; \
+    ln -s /etc/php/7.4/mods-available/swoole.ini /etc/php/7.4/cli/conf.d/20-swoole.ini
 
 RUN set -xe; \
-#     groupmod -o -g 1000 www-data; \
-#     useradd -l --uid 1000 -g www-data -G sudo --create-home worker
-#     usermod -p "*" worker -s /bin/bash; \
+    groupmod -o -g 1000 www-data; \
+    useradd -l --uid 1000 -g www-data -G sudo --create-home ubuntu; \
+    usermod -p "*" ubuntu -s /bin/bash; \
     echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/99-ubuntu
 
 USER ubuntu
