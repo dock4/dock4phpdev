@@ -9,7 +9,7 @@ services:
         environment:
             - TZ=${TZ}
         tty: true
-        user: worker
+        user: ubuntu
         # ports:
         #     - "1215:1215"
 
