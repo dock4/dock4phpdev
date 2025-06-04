@@ -151,7 +151,7 @@ USER ubuntu
 # https://stackoverflow.com/questions/25899912/how-to-install-nvm-in-docker
 # https://stackoverflow.com/questions/25899912/how-to-install-nvm-in-docker/60137919#60137919
 SHELL ["/bin/bash", "--login", "-i", "-c"]
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash; \
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash; \
     source ~/.bashrc; \
     nvm install --lts; \
     npm install -g npm
